@@ -4,6 +4,79 @@
 Request Headers: {'user-agent': 'esp32-s3-touch-lcd-1.85/1.5.5', 'host': '192.168.0.111:8000', 'accept-language': 'zh-CN', 'client-id': '98e0d91c-7f4b-4ee8-bbd4-917a26e76586', 'content-type': 'application/json', 'device-id': 'cc:ba:97:04:92:94', 'content-length': '1080'}
 
 
+
+小智客户端接收
+
+I (10822) MQTT:   Endpoint: mqtt.xiaozhi.me
+I (10822) MQTT:   Client ID: GID_test@@@cc_ba_97_04_92_94@@@90ae4f43-272e-4591-a29d-112081e4a7bd
+I (10832) MQTT:   Username: eyJpcCI6IjExNS4xOTUuMTMzLjE1In0=
+I (10842) MQTT:   Password: vTKo36274hs3Sc8pVMj/r3i3F+jVrMbSskJHPJ8lYiY=
+I (10852) MQTT:   Publish Topic: device-server
+I (10852) MQTT:   Subscribe Topic: null
+
+
+
+
+I (11542) MQTT: Received MQTT message: topic=devices/p2p/cc_ba_97_04_92_94, payload={"type":"hello","version":3,"session_id":"ee5251fb","transport":"udp","udp":{"server":"120.24.160.13","port":8848,"encryption":"aes-128-ctr","key":"9df50527322d45d71cd7f00644661edc","nonce":"01000000849ebc800000000000000000"},"audio_params":{"format":"opus","sample_rate":24000,"channels":1,"frame_duration":60}}
+I (11572) MQTT: Session ID: ee5251fb
+
+
+
+
+
+I (78092) MQTT: Received MQTT message: topic=devices/p2p/cc_ba_97_04_92_94, payload={"type":"tts","state":"start","sample_rate":24000,"session_id":"ee5251fb"}
+I (78102) Application: STATE: speaking
+I (78242) MQTT: Received MQTT message: topic=devices/p2p/cc_ba_97_04_92_94, payload={"type":"llm","text":"😶","emotion":"neutral","session_id":"ee5251fb"}
+I (78462) MQTT: Received MQTT message: topic=devices/p2p/cc_ba_97_04_92_94, payload={"type":"tts","state":"sentence_start","text":"好的，既然你没说话，那我先退下了哈。","session_id":"ee5251fb"}
+I (78462) Application: << 好的，既然你没说话，那我先退下了哈。
+W (79302) MQTT: Received audio packet with wrong sequence: 13, expected: 12         #  出现了乱序
+W (80312) MQTT: Received audio packet with wrong sequence: 30, expected: 29
+W (80732) MQTT: Received audio packet with wrong sequence: 37, expected: 36
+W (81522) MQTT: Received audio packet with wrong sequence: 47, expected: 45
+W (81642) MQTT: Received audio packet with wrong sequence: 52, expected: 50
+I (81742) MQTT: Received MQTT message: topic=devices/p2p/cc_ba_97_04_92_94, payload={"type":"tts","state":"sentence_end","text":"好的，既然你没说话，那我先退下了哈。","session_id":"ee5251fb"}
+I (81752) MQTT: Received MQTT message: topic=devices/p2p/cc_ba_97_04_92_94, payload={"type":"tts","state":"sentence_start","text":"晚安哦～","session_id":"ee5251fb"}
+I (81762) Application: << 晚安哦～
+I (83362) MQTT: Received MQTT message: topic=devices/p2p/cc_ba_97_04_92_94, payload={"type":"tts","state":"sentence_end","text":"晚安哦～","session_id":"ee5251fb"}
+I (83372) MQTT: Received MQTT message: topic=devices/p2p/cc_ba_97_04_92_94, payload={"type":"tts","state":"stop","session_id":"ee5251fb"}
+I (83382) MQTT: Received MQTT message: topic=devices/p2p/cc_ba_97_04_92_94, payload={"type":"goodbye","session_id":"ee5251fb"}
+I (83392) MQTT: Received goodbye message, session_id: ee5251fb
+I (83462) Application: STATE: listening
+I (83502) MQTT: Received MQTT message: topic=devices/p2p/cc_ba_97_04_92_94, payload={"type":"goodbye","session_id":"ee5251fb"}
+I (83502) MQTT: Received goodbye message, session_id: ee5251fb
+
+
+
+
+
+
+
+
+
+
+
+服务器接收
+
+
+2025-05-20 10:48:05,691 - manager - INFO - 消息发送成功, 主题: devices/p2p/cc_ba_97_04_92_94, 内容: {'type': 'hello', 'transport': 'udp', 'session_id': '8e7cb01f-5535-4a81-8e0b-53891c6a8095', 'audio_params': {'sample_rate': 16000, 'frame_duration': 60}, 'udp': {'server': '192.168.0.111', 'port': 56462, 'encryption': 'aes-128-ctr', 'key': 'd4efe555867d7e7c2ff2b438bf2dd856', 'nonce': '0f1c3ee01decf92ad622df935d16514c'}}
+2025-05-20 10:48:05,691 - manager - INFO - 消息发送成功, 主题: devices/p2p/cc_ba_97_04_92_94, 内容: {'type': 'hello', 'transport': 'udp', 'session_id': '8e7cb01f-5535-4a81-8e0b-53891c6a8095', 'audio_params': {'sample_rate': 16000, 'frame_duration': 60}, 'udp': {'server': '192.168.0.111', 'port': 56462, 'encryption': 'aes-128-ctr', 'key': 'd4efe555867d7e7c2ff2b438bf2dd856', 'nonce': '0f1c3ee01decf92ad622df935d16514c'}}
+b'{"session_id":"8e7cb01f-5535-4a81-8e0b-53891c6a8095","type":"iot","update":true,"descriptors":[{"name":"Speaker","description":"\xe6\x89\xac\xe5\xa3\xb0\xe5\x99\xa8","properties":{"volume":{"description":"\xe5\xbd\x93\xe5\x89\x8d\xe9\x9f\xb3\xe9\x87\x8f\xe5\x80\xbc","type":"number"}},"methods":{"SetVolume":{"description":"\xe8\xae\xbe\xe7\xbd\xae\xe9\x9f\xb3\xe9\x87\x8f","parameters":{"volume":{"description":"0\xe5\x88\xb0100\xe4\xb9\x8b\xe9\x97\xb4\xe7\x9a\x84\xe6\x95\xb4\xe6\x95\xb0","type":"number"}}}}}]}'
+2025-05-20 10:48:05,767 - manager - INFO - 接收到来自 16199a91-d21b-4585-ae89-71e864abae6e 的消息
+2025-05-20 10:48:05,767 - manager - INFO - 接收到来自 16199a91-d21b-4585-ae89-71e864abae6e 的消息
+b'{"session_id":"8e7cb01f-5535-4a81-8e0b-53891c6a8095","type":"iot","update":true,"descriptors":[{"name":"Screen","description":"\xe8\xbf\x99\xe6\x98\xaf\xe4\xb8\x80\xe4\xb8\xaa\xe5\xb1\x8f\xe5\xb9\x95\xef\xbc\x8c\xe5\x8f\xaf\xe8\xae\xbe\xe7\xbd\xae\xe4\xb8\xbb\xe9\xa2\x98\xe5\x92\x8c\xe4\xba\xae\xe5\xba\xa6","properties":{"theme":{"description":"\xe4\xb8\xbb\xe9\xa2\x98","type":"string"},"brightness":{"description":"\xe5\xbd\x93\xe5\x89\x8d\xe4\xba\xae\xe5\xba\xa6\xe7\x99\xbe\xe5\x88\x86\xe6\xaf\x94","type":"number"}},"methods":{"SetTheme":{"description":"\xe8\xae\xbe\xe7\xbd\xae\xe5\xb1\x8f\xe5\xb9\x95\xe4\xb8\xbb\xe9\xa2\x98","parameters":{"theme_name":{"description":"\xe4\xb8\xbb\xe9\xa2\x98\xe6\xa8\xa1\xe5\xbc\x8f, light \xe6\x88\x96 dark","type":"string"}}},"SetBrightness":{"description":"\xe8\xae\xbe\xe7\xbd\xae\xe4\xba\xae\xe5\xba\xa6","parameters":{"brightness":{"description":"0\xe5\x88\xb0100\xe4\xb9\x8b\xe9\x97\xb4\xe7\x9a\x84\xe6\x95\xb4\xe6\x95\xb0","type":"number"}}}}}]}'
+2025-05-20 10:48:05,831 - manager - INFO - 接收到来自 16199a91-d21b-4585-ae89-71e864abae6e 的消息
+2025-05-20 10:48:05,831 - manager - INFO - 接收到来自 16199a91-d21b-4585-ae89-71e864abae6e 的消息
+b'{"session_id":"8e7cb01f-5535-4a81-8e0b-53891c6a8095","type":"iot","update":true,"states":[{"name":"Speaker","state":{"volume":70}},{"name":"Screen","state":{"theme":"light","brightness":75}}]}'
+2025-05-20 10:48:05,831 - manager - INFO - 接收到来自 16199a91-d21b-4585-ae89-71e864abae6e 的消息
+2025-05-20 10:48:05,831 - manager - INFO - 接收到来自 16199a91-d21b-4585-ae89-71e864abae6e 的消息
+b'{"session_id":"8e7cb01f-5535-4a81-8e0b-53891c6a8095","type":"listen","state":"start","mode":"auto"}'
+
+
+
+
+
+
+
 # OTA HTTP协议
 ## 客户端→服务器
 
@@ -35,9 +108,6 @@ Request Headers: {'user-agent': 'esp32-s3-touch-lcd-1.85/1.5.5', 'host': '192.16
 - 服务器检查该固件是否有新版本，如果有新版本，将新版本固件信息发送回设备，如果该版本已是最新版本，不处理
 - 服务器检查该固件是否已经注册在设备数据库中，如果没注册过，则生成一个注册码，将注册码和MQTT信息发送回设备
 - 将当前的系统时间打包成发送到设备
-
-
-
 
 
 
@@ -108,6 +178,82 @@ II
     "type": "goodbye",
    }
 
+3. **Iot设备消息
+    ```json
+    {
+        "session": "<session_id>",
+        "type": "iot",
+        "descriptors":{...}
+    }
+
+4. **音频控制消息 开始录音
+    ```json
+    {
+        "session": "<session_id>",
+        "type": "listen",
+        "state": "start",
+        "mode": "realtime" / "auto" / "manul",
+    }
+
+
+5. **音频控制消息 停止录音
+    ```json
+    {
+        "session": "<session_id>",
+        "type": "listen",
+        "state": "stop"
+    }
+
+
+6. **音频控制消息 停止录音
+    ```json
+    {
+        "session": "<session_id>",
+        "type": "abort",
+        "reason": "wake_word_detected"
+    }
+
+7. **iot设备信息
+    ```json
+    {
+        "name": "Speaker",
+        "description": "扬声器",
+        "properties": {
+            "volume": {"description": "当前音量值", "type": "number"}
+        },
+        "methods": {
+            "set_volume": {
+                "description": "设置音量",
+                "parameters": {
+                    "level": {"description": "目标音量值 (0-100)", "type": "number"}
+                }
+            }
+        }
+    }
+
+8. **设备主动上报状态数据
+    ```json
+    {
+        "session_id": "xxx",
+        "type": "iot",
+        "update": true,
+        "status":[
+            {
+                "name": "Speaker",
+                "state": {
+                    "volume": 75
+                }
+            },
+            {
+                "name": "Lamp",
+                "state": {
+                    "power": true
+                }
+            }
+        ]
+    }
+
+
 
 ## 服务器→客户端
 1. **服务器收到hello帧后，会回复UDP的地址，会话ID，示例结构如下：
@@ -121,31 +267,60 @@ II
          "frame_duration": 60,
      },
      "udp": {
-         "address": "<udp_address>",
+         "server": "<udp_address>",
          "port": "<udp_port>",
+         "encryption":"aes-128-ctr",
          "key": "<hex_key>",
          "nonce": "hex_nonce",
      }
    }
 
 2. **服务器发送该消息，通知客户端关闭会话
-{
-    "type": "goodbye",
-    "session_id": "<session_id>",
-}
+    ```json
+    {
+        "type": "goodbye",
+        "session_id": "<session_id>",
+    }
 
 3. **服务器发送消息, 通知客户端 TTS音频数据 传输开始
-{
-    "type": "tts",
-    "state": "start",
-}
+    ```json
+    {
+        "type": "tts",
+        "state": "start"/"stop"/"sentence_start"/"sentence_stop",
+        "text": "即将播放的语音对应文本的内容"
+    }
 
-4. **服务器发送消息, 通知客户端 TTS音频数据 传输结束
-{
-    "type": "tts",
-    "state": "stop",
-}
 
+4. **服务器发送消息， 通知客户端  TTS音频识别内容
+    ```json
+    {
+        "type":"stt",
+        "text":"用户语音转文字结果"
+    }
+
+
+5. ** llm
+    ```json
+    {
+        "type": "llm",
+        "emotion": "happy",
+    }
+
+
+6. ** IoT指令
+    ```json
+    {
+        "type":"iot",
+        "commands":[
+            {
+             "name":"Speaker",
+             "method": "SetVolume", 
+             "parameters": {
+                "level": 50
+                }
+            },
+        ]
+    }
 
 
 
